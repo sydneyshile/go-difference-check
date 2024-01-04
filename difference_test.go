@@ -1,4 +1,4 @@
-package difference_check
+package difference
 
 import (
 	"testing"
