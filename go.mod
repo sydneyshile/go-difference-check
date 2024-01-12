@@ -1,6 +1,6 @@
 module github.com/sydneyshile/go-difference-check
 
-go 1.19
+go 1.21.3
 
 require github.com/stretchr/testify v1.8.4
 
