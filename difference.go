@@ -21,7 +21,6 @@ Minus sign infront of resulting number can be ignored as we take absolute value 
 */
 func PercentDifference(n1 float64, n2 float64) float64 {
 	diff := math.Abs(n1 - n2)
-	average := (n1 + n2) / 2
-
-	return diff / average * 100
+	average := math.Abs((n1 + n2) / 2)
+	return (diff/average * 100)
 }
