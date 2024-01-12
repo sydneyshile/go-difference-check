@@ -1,21 +1,28 @@
 package difference
 
 import (
-	"testing"
+    "testing"
+
+    "github.com/stretchr/testify/assert"
 )
 
 func TestPercentChange(t *testing.T) {
-	result := PercentChange(1, 2)
+    result := PercentChange(1, 2)
 
-	if result != 100 {
-		t.Errorf("Wrong result. Expect 100. Actual %f", result)
-	}
+    if result != 100 {
+        t.Errorf("Wrong result. Expect 100. Actual %f", result)
+    }
 }
 
 func TestPercentDifference(t *testing.T) {
-	result := PercentDifference(1, 3)
+    result := PercentDifference(1, 3)
+    expected := float64(100)
+    assert.Equal(t, expected, result)
+}
 
-	if result != float64(100) {
-		t.Errorf("Wrong result. Expect 100. Actual %f", result)
-	}
+func TestPercentDifferenceDecimal(t *testing.T) {
+    result := PercentDifference(1, 2.5)
+    expected := float64(85.71428571428571)
+
+    assert.Equal(t, expected, result)
 }
