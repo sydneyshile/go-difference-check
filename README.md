@@ -11,5 +11,5 @@ to download package.
 
 Functions:
 
-1. PercentChange(initial float64, final float64)
-2. PercentDifference(n1 float64, n2 float64)
+1. PercentChange(initial float64, final float64) float64, error
+2. PercentDifference(n1 float64, n2 float64) float64, error
