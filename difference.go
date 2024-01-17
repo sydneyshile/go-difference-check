@@ -6,10 +6,10 @@ import (
 )
 
 /*
-This function takes change between two numbers, dividing it by absolute value of initial value,
+This function takes change from initial to final value, dividing it by absolute value of initial value,
 and multiplying it by 100.
-If result is positive, it means there is an increase.
-If result is negative, it means there is a decrease.
+If result is positive, there is an increase.
+If result is negative, there is a decrease.
 Initial value cannot be zero.
 */
 func PercentChange(initial float64, final float64) (float64, error) {
@@ -22,7 +22,8 @@ func PercentChange(initial float64, final float64) (float64, error) {
 
 /*
 This function takes two numbers and choses average value as reference point.
-It calculates absolute difference and divides it average value to get percent difference.
+It calculates absolute difference, divides it with average value, and multiplies it
+by 100 to get percent difference.
 Both values must be greater than zero.
 */
 func PercentDifference(n1 float64, n2 float64) (float64, error) {
