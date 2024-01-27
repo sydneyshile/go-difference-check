@@ -1,8 +1,8 @@
 package difference
 
 import (
-    "errors"
-    "math"
+	"errors"
+	"math"
 )
 
 /*
@@ -12,12 +12,13 @@ If result is positive, there is an increase.
 If result is negative, there is a decrease.
 Initial value cannot be zero.
 */
-func PercentChange(initial float64, final float64) (float64, error) {
-    if initial == 0 {
-        return 0, errors.New("Initial value should be non-zero")
-    }
-    diff := final - initial
-    return diff / math.Abs(initial) * 100, nil
+func PercentChange(initial float64, final float64, precision uint) (float64, error) {
+	if initial == 0 {
+		return 0, errors.New("Initial value should be non-zero")
+	}
+	diff := final - initial
+	result := diff / math.Abs(initial) * 100
+	return roundFloat(result, precision), nil
 }
 
 /*
@@ -26,11 +27,20 @@ It calculates absolute difference, divides it with average value, and multiplies
 by 100 to get percent difference.
 Both values must be greater than zero.
 */
-func PercentDifference(n1 float64, n2 float64) (float64, error) {
-    if n1 <= 0 || n2 <= 0 {
-        return 0, errors.New("Values should be greater than 0")
-    }
-    diff := math.Abs(n1 - n2)
-    average := (n1 + n2) / 2
-    return (diff / average * 100), nil
+func PercentDifference(n1 float64, n2 float64, precision uint) (float64, error) {
+	if n1 <= 0 || n2 <= 0 {
+		return 0, errors.New("Values should be greater than 0")
+	}
+	diff := math.Abs(n1 - n2)
+	average := (n1 + n2) / 2
+	result := (diff / average * 100)
+	return roundFloat(result, precision), nil
+}
+
+/*
+roundFloat is a helper function that rounds a value of float64 type to a specific precision.
+*/
+func roundFloat(value float64, precision uint) float64 {
+	divisor := math.Pow(10, float64(precision))
+	return math.Round(value*divisor) / divisor
 }
