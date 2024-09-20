@@ -7,7 +7,7 @@ on:
       - test
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,22 +16,20 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.21.6'
+          go-version: '1.20'
 
-      - name: Build and test
+      - name: Run Go tests
         run: |
-          go mod tidy
-          go build -v .
-          go test -v .
+          go test -v ./...
 
-      - name: Code quality check
+      - name: Build Go binary
         run: |
-          go vet .
-          gofmt -s -w .
-          golint .
+          go build -o main .
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: test-results.txt
+      - name: Run Go linter
+        run: |
+          go vet ./...
+
+      - name: Run Go formatter
+        run: |
+          gofmt -d .
