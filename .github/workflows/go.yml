@@ -32,4 +32,4 @@ jobs:
 
       - name: Run Go formatter
         run: |
-          gofmt -d .
+           gofmt -d $(go list -f '{{.Dir}}' ./...)
